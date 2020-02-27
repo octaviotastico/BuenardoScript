@@ -1,0 +1,14 @@
+// Single functions
+[sum a b c d]
+[sub a b c d]
+[mul a b c d]
+[div a b c d]
+[mod a b]
+
+// Nested functions
+[sum a b [sub c d]]
+[mul a b [div c d]]
+
+// Misc
+[buenardo]
+[malardou]
