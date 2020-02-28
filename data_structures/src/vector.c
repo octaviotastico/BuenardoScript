@@ -71,4 +71,3 @@ void vector_destroy(vector v) {
     free(v->array); v->array = NULL;
     free(v); v = NULL;
 }
-

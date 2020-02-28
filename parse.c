@@ -5,7 +5,7 @@ void parse(stack tokens) {
 
   // TODO: Recursion with AbstractSyntaxTree, if its not a list.
 
-  struct Tokens token = top(tokens); // TODO: Add new types to data.h
+  struct Tokens token = top(tokens); // TODO: Fix this plzzz octaaa
 
   if (token.type == Number) {
     struct AbstractSyntaxTreeLeaf leaf;

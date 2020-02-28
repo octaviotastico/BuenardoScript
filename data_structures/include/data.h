@@ -18,6 +18,7 @@ typedef struct Vector* vector;
 #include "stdlib.h"
 #include "time.h"
 
+#include "ast.h"
 #include "heap.h"
 #include "list.h"
 #include "pair.h"
@@ -25,57 +26,9 @@ typedef struct Vector* vector;
 #include "rbtree.h"
 #include "set.h"
 #include "stack.h"
+#include "string.h"
+#include "tokens.h"
 #include "vector.h"
-
-typedef struct Tokens* token;
-
-typedef union TokenType {
-  char* Name;
-  int Number;
-  char* String;
-  char Parenthesis;
-} TokenType;
-
-typedef enum TokenTypeT {
-  Name,
-  Number,
-  String,
-  Parenthesis
-} TokenTypeT;
-
-struct Tokens {
-  TokenTypeT type;
-  char* value;
-};
-
-typedef union ParserType {
-  char* CallExpression;
-  int NumericAtom;
-  char* StringAtom;
-  char* Identifier;
-} ParserType;
-
-typedef enum ParserTypeT {
-  CallExpression,
-  NumericAtom,
-  StringAtom,
-  Identifier
-} ParserTypeT;
-
-typedef struct AbstractSyntaxTree* ast;
-
-struct AbstractSyntaxTree {
-  ParserTypeT type;
-  char* name;
-  void* arguments; // This could be an ast or a node
-};
-
-typedef struct AbstractSyntaxTreeLeaf* node;
-
-struct AbstractSyntaxTreeLeaf {
-  char* type;
-  char* value;
-};
 
 typedef union Data {
 	unsigned char uc;               //  1

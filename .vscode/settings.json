@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "vector": "cpp",
+    "string.h": "c",
+    "*.tcc": "cpp",
+    "t.h": "c",
+    "data.h": "c",
+    "characters.h": "c"
+  }
+}
