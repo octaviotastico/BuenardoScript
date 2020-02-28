@@ -25,7 +25,3 @@ int isClosedBracket(char c) {
 int isString(char c) {
   return c == '"';
 }
-
-int isOperator(char c) {
-  return ((c == '+') || (c == '-') || (c == '*') || (c == '/'));
-}
