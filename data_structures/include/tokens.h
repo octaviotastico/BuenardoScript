@@ -3,8 +3,6 @@
 
 #include "T.h"
 
-typedef struct Tokens* token;
-
 typedef union TokenType {
   char* Name;
   int Number;
@@ -19,9 +17,13 @@ typedef enum TokenTypeT {
   Parenthesis
 } TokenTypeT;
 
+typedef struct Tokens* token;
+
 struct Tokens {
   TokenTypeT type;
-  char* value;
+  typeT value;
 };
+
+token create_token(TokenTypeT, typeT);
 
 #endif

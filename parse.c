@@ -1,30 +1,23 @@
 #include <stdio.h>
 #include "data.h"
 
-void parse(stack tokens) {
+typeT parse(vector tokens) {
 
-  // TODO: Recursion with AbstractSyntaxTree, if its not a list.
+  token t = at(tokens, 0);
+  pop_back(tokens);
 
-  struct Tokens token = top(tokens); // TODO: Fix this plzzz octaaa
-
-  if (token.type == Number) {
-    struct AbstractSyntaxTreeLeaf leaf;
-    leaf.type = NumericAtom;
-    leaf.value = token.value;
+  if (t->type == Number) {
+    ast_node leaf = ast_node_init(NumericAtom, t->value);
     return leaf;
   }
 
-  if (token.type == String) {
-    struct AbstractSyntaxTreeLeaf leaf;
-    leaf.type = StringAtom;
-    leaf.value = token.value;
+  if (t->type == String) {
+    ast_node leaf = ast_node_init(StringAtom, t->value);
     return leaf;
   }
 
-  if (token.type == Name) {
-    struct AbstractSyntaxTreeLeaf leaf;
-    leaf.type = Identifier;
-    leaf.value = token.value;
-    return leaf;
+  if (t->type == Name) {
+    ast tree = ast_init(Identifier, t->value, parse(tokens));
+    return tree;
   }
 }

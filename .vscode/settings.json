@@ -5,6 +5,18 @@
     "*.tcc": "cpp",
     "t.h": "c",
     "data.h": "c",
-    "characters.h": "c"
+    "characters.h": "c",
+    "tokens.h": "c",
+    "ast.h": "c",
+    "deque": "cpp",
+    "string": "cpp",
+    "optional": "c",
+    "istream": "c",
+    "ostream": "c",
+    "system_error": "c",
+    "array": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "utility": "c"
   }
 }

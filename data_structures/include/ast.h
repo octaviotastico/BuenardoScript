@@ -22,14 +22,18 @@ typedef struct AbstractSyntaxTree* ast;
 struct AbstractSyntaxTree {
   ParserTypeT type;
   char* name;
-  void* arguments; // This could be an ast or a node
+  typeT arguments;
 };
 
-typedef struct AbstractSyntaxTreeLeaf* node;
+typedef struct AbstractSyntaxTreeLeaf* ast_node;
 
 struct AbstractSyntaxTreeLeaf {
-  char* type;
-  char* value;
+  ParserTypeT type;
+  typeT value;
 };
+
+ast ast_init(ParserTypeT, char*, typeT);
+
+ast_node ast_node_init(ParserTypeT, typeT);
 
 #endif

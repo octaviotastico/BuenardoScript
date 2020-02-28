@@ -19,12 +19,25 @@ vector tokenizer(char* input_text) {
         if(isWhiteSpace(c)) continue;
 
         if(isName(c)) {
-            char* str = ""; i++;
+            char* name = ""; i++;
             while(!isWhiteSpace(input_text[i])) {
-                str += input_text[i]; i++;
+                name += input_text[i]; i++;
             }
-            token new_token; // Declare new token
+            token new_token = create_token(Name, name);
             push_back(tokens, new_token);
+            continue;
+        }
+
+        if(isOpenBracket(c)) {
+            token new_token = create_token(Parenthesis, c);
+            push_back(tokens, new_token);
+            continue;
+        }
+
+        if(isClosedBracket(c)) {
+            token new_token = create_token(Parenthesis, c);
+            push_back(tokens, new_token);
+            continue;
         }
 
         if(isNumber(c)) {
@@ -34,7 +47,7 @@ vector tokenizer(char* input_text) {
                 number += (int)c;
                 c = input_text[++i];
             }
-            token new_token; // Declare new token
+            token new_token = create_token(Number, number);
             push_back(tokens, new_token); i--;
         }
 
@@ -43,7 +56,7 @@ vector tokenizer(char* input_text) {
             while(!isString(input_text[i]) && isCharacter(input_text[i])) {
                 str += input_text[i]; i++;
             }
-            token new_token; // Declare new token
+            token new_token = create_token(String, str);
             push_back(tokens, new_token);
         }
     }
