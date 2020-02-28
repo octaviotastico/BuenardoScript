@@ -53,6 +53,7 @@ vector tokenizer(char* input_text) {
             typeT number = T_init(Int, number);
             token new_token = create_token(Number, number);
             push_back(tokens, new_token); i--;
+            continue;
         }
 
         if(isString(c)) {
@@ -63,6 +64,7 @@ vector tokenizer(char* input_text) {
             typeT str = T_init(P_Char, _str);
             token new_token = create_token(String, str);
             push_back(tokens, new_token);
+            continue;
         }
     }
 
