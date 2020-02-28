@@ -27,6 +27,56 @@ typedef struct Vector* vector;
 #include "stack.h"
 #include "vector.h"
 
+typedef struct Tokens* token;
+
+typedef union TokenType {
+  char* Name;
+  int Number;
+  char* String;
+  char Parenthesis;
+} TokenType;
+
+typedef enum TokenTypeT {
+  Name,
+  Number,
+  String,
+  Parenthesis
+} TokenTypeT;
+
+struct Tokens {
+  TokenTypeT type;
+  char* value;
+};
+
+typedef union ParserType {
+  char* CallExpression;
+  int NumericAtom;
+  char* StringAtom;
+  char* Identifier;
+} ParserType;
+
+typedef enum ParserTypeT {
+  CallExpression,
+  NumericAtom,
+  StringAtom,
+  Identifier
+} ParserTypeT;
+
+typedef struct AbstractSyntaxTree* ast;
+
+struct AbstractSyntaxTree {
+  ParserTypeT type;
+  char* name;
+  void* arguments; // This could be an ast or a node
+};
+
+typedef struct AbstractSyntaxTreeLeaf* node;
+
+struct AbstractSyntaxTreeLeaf {
+  char* type;
+  char* value;
+};
+
 typedef union Data {
 	unsigned char uc;               //  1
 	signed char sc;                 //  2
@@ -51,6 +101,9 @@ typedef union Data {
 	int* p_i;                       // 21
 	char* p_c;                      // 22
 	void* p_v;                      // 23
+    struct Tokens token;            // 24
+    TokenTypeT tt;                  // 25
+    ParserTypeT pt;                 // 26
 } data;
 
 typedef enum types {
@@ -78,6 +131,9 @@ typedef enum types {
     P_Int,                          // 21
     P_Char,                         // 22
     P_Void,                         // 23
+    Token,                          // 24
+    TokenTypes,                     // 25
+    ParserTypes                     // 26
 } type;
 
 #endif
