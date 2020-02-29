@@ -14,7 +14,7 @@ The syntax will be something like:
 [div a b]       // Will divide a/b
 [mod a b]       // Will return a modulo b
 
-// Nested functions
+// Nested functions (NOT ALLOWING THIS FOR NOW)
 [sum a b [sub c d]]
 [mul a b [div c d]]
 ```
