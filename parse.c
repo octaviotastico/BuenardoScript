@@ -1,21 +1,21 @@
-#include <stdio.h>
-#include "data.h"
+#include "data_structures/include/T.h"
 
-ast parse(vector tokens) {
+ast parse(vector v) {
 
     int i = 0;
-    token t = at(tokens, i);
-    while(t->type != Name) {t = at(tokens, i); i++;}
+    typeT t = at(v, i);
+    token tt = t->value.p_t;
+    while(tt->type != Name) {t = at(v, i); tt = t->value.p_t; i++;}
 
-    vector arguments = parse_arguments(tokens, ++i);
-    ast tree = ast_init(Identifier, t->value, arguments);
+    vector arguments = parse_arguments(v, ++i);
+    ast tree = ast_init(Identifier, tt->value, arguments);
     return tree;
 
 }
 
 vector parse_arguments(vector tokens, int pos) {
     vector arguments = vector_init(ParserTypes, 1);
-    for(int i = pos; i < tokens->sz; i++) {
+    for(int i = pos; i < size(tokens); i++) {
         token t = at(tokens, i);
 
         if (t->type == Number) {
@@ -31,9 +31,13 @@ vector parse_arguments(vector tokens, int pos) {
     return arguments;
 }
 
+int main() {
+    return 0;
+}
+
 // vector parse(vector tokens, int start) {
 
-//     for(int i = start; i < tokens->sz; i++) {
+//     for(int i = start; i < size(tokens); i++) {
 //         token t = at(tokens, i);
 //         if(t->type == Name) {
 //             parse_function(tokens, i + 1);

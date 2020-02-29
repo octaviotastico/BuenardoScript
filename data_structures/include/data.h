@@ -54,9 +54,10 @@ typedef union Data {
 	int* p_i;                       // 21
 	char* p_c;                      // 22
 	void* p_v;                      // 23
-    struct Tokens token;            // 24
+    struct Tokens ts;               // 24
     TokenTypeT tt;                  // 25
     ParserTypeT pt;                 // 26
+    token p_t;                      // 27
 } data;
 
 typedef enum types {
@@ -86,7 +87,8 @@ typedef enum types {
     P_Void,                         // 23
     Token,                          // 24
     TokenTypes,                     // 25
-    ParserTypes                     // 26
+    ParserTypes,                    // 26
+    P_Token                         // 27
 } type;
 
 #endif
