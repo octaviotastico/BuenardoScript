@@ -1,6 +1,6 @@
 #include "ast.h"
 
-ast ast_init(ParserTypeT type, char* name, typeT arguments) {
+ast ast_init(ParserTypeT type, char* name, vector arguments) {
     ast new_ast = (ast)malloc(sizeof(struct AbstractSyntaxTree));
     new_ast->type = type;
     new_ast->name = name;

@@ -22,7 +22,7 @@ typedef struct AbstractSyntaxTree* ast;
 struct AbstractSyntaxTree {
   ParserTypeT type;
   char* name;
-  typeT arguments;
+  vector arguments;
 };
 
 typedef struct AbstractSyntaxTreeLeaf* ast_node;

@@ -17,8 +17,4 @@ The syntax will be something like:
 // Nested functions
 [sum a b [sub c d]]
 [mul a b [div c d]]
-
-// Misc
-[buenardo]
-[malardou]
 ```
