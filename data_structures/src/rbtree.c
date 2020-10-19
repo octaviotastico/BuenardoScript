@@ -1,4 +1,4 @@
-#include "rbtree.h"
+#include "../include/rbtree.h"
 
 // Relatives functions
 
@@ -31,11 +31,11 @@ static int tree_is_left_child(tree a) {
 
 static int tree_is_right_child(tree a) {
     return a == a->parent->right;
-} 
+}
 
 // Rotation functions
 
-static void tree_rotateL(tree P) { 
+static void tree_rotateL(tree P) {
     tree Q = P->right;
     P->right = Q->left;
     if(P->right != NULL) P->right->parent = P;
@@ -59,7 +59,7 @@ static void tree_rotateR(tree Q) {
     tree P = Q->left;
     Q->left = P->right;
     if(Q->left != NULL) Q->left->parent = Q;
-    
+
     if(Q->parent == NULL) {
         P->parent = NULL;
     }
@@ -79,9 +79,9 @@ static void tree_rotateR(tree Q) {
 
 tree tree_create(typeT t) {
     tree g = (tree)malloc(sizeof(struct RBTree));
-    
+
     g->node = t;
-    
+
     g->left = g->right = g->parent = NULL;
 
     // New nodes are RED
@@ -163,7 +163,7 @@ void tree_balance(tree t) {
         p = tree_parent(t);
         g = tree_grandparent(t);
     }
-    
+
     /* Second part */
     if(t == p->left) tree_rotateR(g);
     else tree_rotateL(g);

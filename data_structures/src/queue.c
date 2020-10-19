@@ -1,11 +1,11 @@
-#include "queue.h"
+#include "../include/queue.h"
 
 queue queue_init(int type){
 	queue q = (queue)malloc(sizeof(struct Queue));
 	q->first = NULL;
 	q->type = type;
 	q->sz = 0;
-	
+
 	// Allocate functions
 	q->enqueue = queue_enqueue;
 	q->dequeue = queue_dequeue;

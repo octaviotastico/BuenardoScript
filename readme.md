@@ -18,3 +18,29 @@ The syntax will be something like:
 [sum a b [sub c d]]
 [mul a b [div c d]]
 ```
+
+### This readme will be the shitttttt
+(Readme in progress, do not read)
+
+A compiler is made by three important parts:
+
+1) Tokenizer
+2) Parser
+3) Code transformation
+
+Important files:
+
+```
+.
+├─ characters.c
+├─ tokenize.c
+├─ parse.c
+├─ convert.c
+└─ data_structures
+   ├─ include
+   │  └─ LOT_OF_STUFF
+   └─ src
+      └─ LOT_OF_STUFF
+```
+
+I don't have any makefile yet, but I guess someday I will... for now, just `gcc tokenize.c -o asd data_structures/src/* && ./asd` the shh outta this code.

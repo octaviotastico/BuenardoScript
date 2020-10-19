@@ -1,4 +1,4 @@
-#include "T.h"
+#include "../include/T.h"
 
 typeT T_init(int iType, void* value) {
     typeT t = (typeT)malloc(sizeof(struct T));
@@ -23,7 +23,7 @@ void T_set_type(typeT t, int type) {
 
 void T_set_value(typeT t, void* value) {
     assert(t->iType != 0);
-    
+
     switch(t->iType) {
         case UChar:
             t->value.uc = *(unsigned char*)value;

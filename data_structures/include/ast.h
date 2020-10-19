@@ -32,7 +32,7 @@ struct AbstractSyntaxTreeLeaf {
   typeT value;
 };
 
-ast ast_init(ParserTypeT, char*, typeT);
+ast ast_init(ParserTypeT, char*, vector);
 
 ast_node ast_node_init(ParserTypeT, typeT);
 

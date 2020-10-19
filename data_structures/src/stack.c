@@ -1,9 +1,9 @@
-#include "stack.h"
+#include "../include/stack.h"
 
 stack stack_init(int type) {
 
 	stack s = (stack)malloc(sizeof(struct Stack));
-	
+
 	s->first = NULL;
 	s->type = type;
 	s->sz = 0;

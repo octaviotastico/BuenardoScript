@@ -1,4 +1,4 @@
-#include "pair.h"
+#include "../include/pair.h"
 
 pair pair_init(int t1, int t2, void* v1, void* v2) {
 
@@ -6,7 +6,7 @@ pair pair_init(int t1, int t2, void* v1, void* v2) {
 
 	p->first = T_init(t1, v1);
 	p->second = T_init(t2, v2);
-	
+
 	// Allocate functions
 	p->set = pair_set;
 	p->set_first = pair_set_first;

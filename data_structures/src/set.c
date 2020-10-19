@@ -1,4 +1,4 @@
-#include "set.h"
+#include "../include/set.h"
 
 set set_init(int type) {
     set s = (set)malloc(sizeof(struct Set));
@@ -65,7 +65,7 @@ void set_erase(set s, typeT t) {
 
     // Find element
     tree r = tree_find(s->root, t);
-    
+
     // If set is empty or elem does not belong to s return
     if(!s->sz || !equals(r->node, t)) {
         free(t); t = NULL;
@@ -95,7 +95,7 @@ void set_erase(set s, typeT t) {
 
     if(r->right) node = r->right;
     else node = r->left;
-    
+
     // If no children
     if(!node) {
         // Trivial if color is RED
