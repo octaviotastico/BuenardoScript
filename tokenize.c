@@ -1,32 +1,25 @@
-#include "data_structures/include/T.h"
-#include "characters.h"
+#include "tokenize.h"
 
 vector tokenizer(char* input_text) {
-  int input_text_length = string_size(input_text);
-  vector tokens = vector_init(Token, 1);
 
-  for(int i = 0; i < input_text_length; i++) {
+  vector tokens = vector_init(Token, 1);
+  for(int i = 0; i < string_size(input_text); i++) {
     char c = input_text[i];
+
     if(isWhiteSpace(c)) continue;
 
+    if(isOpenBracket(c) || isClosedBracket(c)) {
+      token new_token = token_init(Bracket, &c);
+      push_back(tokens, new_token);
+      continue;
+    }
+
     if(isName(c)) {
-      char* name = ""; i++;
+      short j = 0; char name[100];
       while(!isWhiteSpace(input_text[i])) {
-        name += input_text[i]; i++;
+        name[j] = input_text[i]; i++; j++;
       }
       token new_token = token_init(Name, name);
-      push_back(tokens, new_token);
-      continue;
-    }
-
-    if(isOpenBracket(c)) {
-      token new_token = token_init(Bracket, &c);
-      push_back(tokens, new_token);
-      continue;
-    }
-
-    if(isClosedBracket(c)) {
-      token new_token = token_init(Bracket, &c);
       push_back(tokens, new_token);
       continue;
     }
@@ -55,19 +48,4 @@ vector tokenizer(char* input_text) {
   }
 
   return tokens;
-}
-
-int main() {
-  struct AbstractSyntaxTree abbb;
-  char* test = "[sum 1 2]";
-  printf("%s", test);
-
-  vector v = tokenizer(test);
-
-  char* test2 = "[div 256 2]";
-  printf("%s", test2);
-
-  vector v2 = tokenizer(test2);
-
-  return 0;
 }

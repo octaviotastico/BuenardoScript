@@ -1,4 +1,4 @@
-#include "data_structures/include/T.h"
+#include "parse.h"
 
 /*
 
@@ -18,32 +18,45 @@ Revisar param 1 y param 2, si son atomos, aplicar Name, sino, resolver primero p
 
 */
 
-vector parse_arguments(vector tokens, int pos) { // TA TODO MAL NO SE QUE HICE ANTES -2 IQ TENIA
-  vector arguments = vector_init(AbstractSyntaxTree, 1);
-  for(int i = pos; i < size(tokens); i++) {
-    token t = at(tokens, i);
+// vector parse_arguments(vector tokens, int pos) { // TA TODO MAL NO SE QUE HICE ANTES -2 IQ TENIA
+//   vector arguments = vector_init(AST, 1);
+//   for(int i = pos; i < size(tokens); i++) {
+//     token t = at(tokens, i);
 
-    if (t->type == Number) {
-      ast_node node = ast_node_init(NumericAtom, t->value);
-      push_back(arguments, node);
-    }
+//     if (t->type == Number) {
+//       ast_node node = ast_node_init(NumericAtom, t->value);
+//       push_back(arguments, node);
+//     }
 
-    if (t->type == String) {
-      ast_node node = ast_node_init(StringAtom, t->value);
-      push_back(arguments, node);
-    }
-  }
-  return arguments;
-}
+//     if (t->type == String) {
+//       ast_node node = ast_node_init(StringAtom, t->value);
+//       push_back(arguments, node);
+//     }
+//   }
+//   return arguments;
+// }
 
 ast parse(vector v) {
 
-  typeT token = (at(v, 0))->value.t; // Get the token
-  while(tt->type != Name) {t = at(v, i); tt = t->value.p_t; i++;}
+  // v is a vector of tokens, so v[i] is a token
+  printf("%llu\n", v->size);
+  for(int i=0; i<4; i++) {
+    typeT tokenTypeT = at(v, i);
+    token tokenValue = tokenTypeT->value.t;
 
-  vector arguments = parse_arguments(v, ++i);
-  ast tree = ast_init(Identifier, tt->value, arguments);
-  return tree;
+    printf("%s\n", tokenValue->value);
+
+    if(tokenTypeT->iType == Bracket) {
+      printf("--1--");
+    } else {
+      printf("--2--");
+    }
+  }
+
+  // ast ast_node = ast_init()
+  // vector arguments = parse_arguments(v, ++i);
+  // ast tree = ast_init(Identifier, tt->value, arguments);
+  // return tree;
 
 }
 

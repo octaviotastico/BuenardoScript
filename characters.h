@@ -1,27 +1,18 @@
-int isWhiteSpace(char c) {
-  return c == ' ';
-}
+#ifndef Characters_H
+#define Characters_H
 
-int isNumber(char c) {
-  return (c > 47 && c < 58);
-}
+int isWhiteSpace(char c);
 
-int isCharacter(char c) {
-  return (isNumber(c) || (c > 64 && c < 91) || (c > 96 && c < 123) || (c > 127 && c < 166));
-}
+int isNumber(char c);
 
-int isName(char c) {
-  return isCharacter(c);
-}
+int isCharacter(char c);
 
-int isOpenBracket(char c) {
-  return c == '[';
-}
+int isName(char c);
 
-int isClosedBracket(char c) {
-  return c == ']';
-}
+int isOpenBracket(char c);
 
-int isString(char c) {
-  return c == '"';
-}
+int isClosedBracket(char c);
+
+int isString(char c);
+
+#endif

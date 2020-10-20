@@ -32,7 +32,7 @@ Important files:
 
 ```
 .
-├─ characters.c
+├─ characters.h
 ├─ tokenize.c
 ├─ parse.c
 ├─ convert.c
@@ -43,4 +43,4 @@ Important files:
       └─ LOT_OF_STUFF
 ```
 
-I don't have any makefile yet, but I guess someday I will... for now, just `gcc tokenize.c -o asd data_structures/src/* && ./asd` the shh outta this code.
+I don't have any makefile yet, but I guess someday I will... for now, just `gcc pipeline.c -g -o asd parse.c tokenize.c characters.c data_structures/src/* && ./asd` the shh outta this code.
