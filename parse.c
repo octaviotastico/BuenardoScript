@@ -36,29 +36,30 @@ Revisar param 1 y param 2, si son atomos, aplicar Name, sino, resolver primero p
 //   return arguments;
 // }
 
-// Here we receive a vector of tokens.
-ast parse(vector v) {
+ast parse(vector v, int position) {
 
-  fore(i, 0, size(v)) {
+  fore(i, position, size(v)) {
     token tokenTypeT = at(v, i)->value.t;
-    typeT lala = tokenTypeT->token_value;
-    // token tokenValue = tokenTypeT->value.t;
+    typeT tokenValue = tokenTypeT->token_value;
 
-    // printf("%s\n", tokenTypeT->iType);
-
-    if(lala->iType == Bracket) {
-      printf("ImmaBracket\n");
-    } else {
-      printf("NotBracket\n");
+    printf("%d ", tokenValue->iType);
+    if (tokenValue->iType == Bracket) {
+      if(isOpenBracket(tokenValue->value.bracket)) {
+        printf("ImmaOpenBracket\n");
+      }
+      if(isClosedBracket(tokenValue->value.bracket)) {
+        printf("ImmaClosedBracketc\n");
+      }
+    } else if (tokenValue->iType == Name) {
+      printf("ImmaName\n");
+    } else if (tokenValue->iType == Number) {
+      printf("ImmaNumber\n");
+    } else if (tokenValue->iType == String) {
+      printf("ImmaString\n");
     }
   }
-
-  // ast ast_node = ast_init()
-  // vector arguments = parse_arguments(v, ++i);
-  // ast tree = ast_init(Identifier, tt->value, arguments);
-  // return tree;
-
 }
+
 
 // int main() {
 //   return 0;

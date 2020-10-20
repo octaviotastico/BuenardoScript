@@ -10,7 +10,7 @@ int main() {
   // vector v2 = tokenizer(test2);
   // printf("Tokenized %s", test2);
 
-  ast a1 = parse(v1);
+  ast a1 = parse(v1, 0);
 
   // ast a2 = parse(v2);
 
