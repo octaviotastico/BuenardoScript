@@ -18,48 +18,80 @@ Revisar param 1 y param 2, si son atomos, aplicar Name, sino, resolver primero p
 
 */
 
-// vector parse_arguments(vector tokens, int pos) { // TA TODO MAL NO SE QUE HICE ANTES -2 IQ TENIA
-//   vector arguments = vector_init(AST, 1);
-//   for(int i = pos; i < size(tokens); i++) {
-//     token t = at(tokens, i);
 
-//     if (t->type == Number) {
-//       ast_node node = ast_node_init(NumericAtom, t->value);
-//       push_back(arguments, node);
-//     }
+// Here we receive a vector of tokens, and a position.
+// Position is only used for recursion purposes.
+ast parse(vector v, int pos) {
 
-//     if (t->type == String) {
-//       ast_node node = ast_node_init(StringAtom, t->value);
-//       push_back(arguments, node);
-//     }
-//   }
-//   return arguments;
-// }
+  ast abstract_syntax_tree;
+  int ast_type = AST;
+  char* ast_name = "";
+  short ast_single_arg = 0;
+  void* arg1 = NULL;
+  void* arg2 = NULL;
 
-ast parse(vector v, int position) {
+  token tokenTypeT = at(v, pos)->value.t;
+  typeT tokenValue = tokenTypeT->token_value;
 
-  fore(i, position, size(v)) {
-    token tokenTypeT = at(v, i)->value.t;
-    typeT tokenValue = tokenTypeT->token_value;
+  if (tokenValue->iType == Bracket) {
 
-    printf("%d ", tokenValue->iType);
-    if (tokenValue->iType == Bracket) {
-      if(isOpenBracket(tokenValue->value.bracket)) {
-        printf("ImmaOpenBracket\n");
-      }
-      if(isClosedBracket(tokenValue->value.bracket)) {
-        printf("ImmaClosedBracketc\n");
-      }
-    } else if (tokenValue->iType == Name) {
-      printf("ImmaName\n");
-    } else if (tokenValue->iType == Number) {
-      printf("ImmaNumber\n");
-    } else if (tokenValue->iType == String) {
-      printf("ImmaString\n");
+    if(isOpenBracket(tokenValue->value.bracket)) {
+      printf("ImmaOpenBracket\n");
+      tokenTypeT = at(v, pos + 1)->value.t;
+      tokenValue = tokenTypeT->token_value;
+      pos++; // Move on to get the function name.
     }
-  }
-}
 
+    if(isClosedBracket(tokenValue->value.bracket)) {
+      printf("ImmaClosedBracketc\n");
+      return NULL;
+    }
+
+  }
+
+  if (tokenValue->iType == Name) {
+
+    ast_name = tokenValue->value.name;
+
+    // v[i] is a name, so v[i+1] is arg1, v[i+2] is arg2
+    // if v[i+1] or v[i+2] are a '[' (openingBracket), then
+    // its a recursive argument.
+    typeT arg1TokenValue = (at(v, pos + 1)->value.t)->token_value;
+    if (arg1TokenValue->iType == Bracket) {
+      arg1 = parse(v, pos + 1); pos++;
+      typeT _t = (at(v, pos)->value.t)->token_value;
+      while (_t->iType != Bracket && !isClosedBracket(_t->value.bracket)) {
+        // Until we find a closing bracket, so we dont
+        // count the same function (argument) twice... Not
+        // an elegant solution, but it works until I come up
+        // with something better.
+        pos++;
+      }
+    } else {
+      arg1 = arg1TokenValue;
+    }
+
+    typeT arg2TokenValue = (at(v, pos + 2)->value.t)->token_value;
+    if (arg2TokenValue->iType == Bracket) {
+      arg2 = parse(v, pos + 2); pos++;
+      typeT _t = (at(v, pos)->value.t)->token_value;
+      while (_t->iType != Bracket && !isClosedBracket(_t->value.bracket)) {
+        // Until we find a closing bracket, so we dont
+        // count the same function (argument) twice... Not
+        // an elegant solution, but it works until I come up
+        // with something better.
+        pos++;
+      }
+    } else {
+      arg2 = arg2TokenValue;
+    }
+    printf("ImmaFunction\n");
+  }
+
+  abstract_syntax_tree = ast_init(ast_type, ast_name, ast_single_arg, arg1, arg2);
+  printf("Finished building AST\n");
+  return abstract_syntax_tree;
+}
 
 // int main() {
 //   return 0;

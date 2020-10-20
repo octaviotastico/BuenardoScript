@@ -2,7 +2,8 @@
 #include "parse.h"
 
 int main() {
-  char* test1 = "[sum 1 2]";
+  // char* test1 = "[sum 1 2]";
+  char* test1 = "[sum [sum 1 2] 2]";
   vector v1 = tokenizer(test1);
   printf("Tokenized %s\n", test1);
 

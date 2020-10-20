@@ -1,6 +1,6 @@
 #include "../include/ast.h"
 
-ast ast_init(int type, char* name, short single_arg, typeT arg1, typeT arg2) {
+ast ast_init(int type, char* name, short single_arg, void* arg1, void* arg2) {
   ast new_ast = (ast)malloc(sizeof(struct AbstractSyntaxTree));
   new_ast->type = type;
   new_ast->name = name;
