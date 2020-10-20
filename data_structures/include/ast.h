@@ -3,37 +3,20 @@
 
 #include "T.h"
 
-typedef union ParserType {
-  char* CallExpression;
-  int NumericAtom;
-  char* StringAtom;
-  char* Identifier;
-} ParserType;
-
-typedef enum ParserTypeT {
-  CallExpression,
-  NumericAtom,
-  StringAtom,
-  Identifier
-} ParserTypeT;
-
-typedef struct AbstractSyntaxTree* ast;
-
 struct AbstractSyntaxTree {
-  ParserTypeT type;
+  int type;
   char* name;
-  vector arguments;
+  short single_arg;
+  typeT arg1;
+  typeT arg2;
+
+	/* Destroy ast */
+  void (*destroy)(ast);
 };
 
-typedef struct AbstractSyntaxTreeLeaf* ast_node;
 
-struct AbstractSyntaxTreeLeaf {
-  ParserTypeT type;
-  typeT value;
-};
+ast ast_init(int type, char* name, short single_arg, typeT arg1, typeT arg2);
 
-ast ast_init(ParserTypeT, char*, vector);
-
-ast_node ast_node_init(ParserTypeT, typeT);
+void ast_destroy(ast a);
 
 #endif

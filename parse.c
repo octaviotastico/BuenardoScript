@@ -1,35 +1,51 @@
 #include "data_structures/include/T.h"
 
-// vector parse_arguments(vector tokens, int pos) {
-//   vector arguments = vector_init(ParserTypes, 1);
-//   for(int i = pos; i < size(tokens); i++) {
-//     token t = at(tokens, i);
+/*
 
-//     if (t->type == Number) {
-//       ast_node node = ast_node_init(NumericAtom, t->value);
-//       push_back(arguments, node);
-//     }
+AST should look like:
 
-//     if (t->type == String) {
-//       ast_node node = ast_node_init(StringAtom, t->value);
-//       push_back(arguments, node);
-//     }
-//   }
-//   return arguments;
-// }
+.
+├─ Name             // String - Function name
+├─ Single_Multiple  // Bool
+├─ Param1           // TypeT
+└─ Param2           // TypeT
+                    // I could add a vector, and those
+                    // could be the arguments, but that
+                    // could be a lot more complicated
 
-// ast parse(vector v) {
+Recorrer vector de tokens, guardar nombre y parametros 1 y 2 asumiendo que son simples
+Revisar param 1 y param 2, si son atomos, aplicar Name, sino, resolver primero param 1, despues param 2, y despues aplicar Name
 
-//   int i = 0;
-//   typeT t = at(v, i);
-//   token tt = t->value.p_t;
-//   while(tt->type != Name) {t = at(v, i); tt = t->value.p_t; i++;}
+*/
 
-//   vector arguments = parse_arguments(v, ++i);
-//   ast tree = ast_init(Identifier, tt->value, arguments);
-//   return tree;
+vector parse_arguments(vector tokens, int pos) { // TA TODO MAL NO SE QUE HICE ANTES -2 IQ TENIA
+  vector arguments = vector_init(AbstractSyntaxTree, 1);
+  for(int i = pos; i < size(tokens); i++) {
+    token t = at(tokens, i);
 
-// }
+    if (t->type == Number) {
+      ast_node node = ast_node_init(NumericAtom, t->value);
+      push_back(arguments, node);
+    }
+
+    if (t->type == String) {
+      ast_node node = ast_node_init(StringAtom, t->value);
+      push_back(arguments, node);
+    }
+  }
+  return arguments;
+}
+
+ast parse(vector v) {
+
+  typeT token = (at(v, 0))->value.t; // Get the token
+  while(tt->type != Name) {t = at(v, i); tt = t->value.p_t; i++;}
+
+  vector arguments = parse_arguments(v, ++i);
+  ast tree = ast_init(Identifier, tt->value, arguments);
+  return tree;
+
+}
 
 // int main() {
 //   return 0;

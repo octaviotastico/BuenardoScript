@@ -85,6 +85,9 @@ void T_set_value(typeT t, void* value) {
         case Token:
             t->value.t = *(token*)value;
             break;
+        case AST:
+            t->value.a = *(ast*)value;
+            break;
         case Name:
             t->value.name = (char*)value;
             break;
@@ -273,6 +276,8 @@ void T_destroy(typeT t) {
             break;
         case Token:
             destroy(t->value.t);
+        case AST:
+            destroy(t->value.a);
     };
     free(t); t = NULL;
 }

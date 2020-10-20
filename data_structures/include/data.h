@@ -12,6 +12,7 @@ typedef struct Stack* stack;
 typedef struct T* typeT;
 typedef struct Vector* vector;
 typedef struct Tokens* token;
+typedef struct AbstractSyntaxTree* ast;
 
 #include "assert.h"
 #include "defs.h"
@@ -56,10 +57,11 @@ typedef union Data {
 	char* p_c;                      // 22
 	void* p_v;                      // 23
     token t;                        // 24
-    char* name;
-    int number;
-    char* string;
-    char bracket;
+    ast a;                          // 25
+    char* name;                     // 26
+    int number;                     // 27
+    char* string;                   // 28
+    char bracket;                   // 29
 } data;
 
 typedef enum types {
@@ -88,10 +90,11 @@ typedef enum types {
     P_Char,                         // 22
     P_Void,                         // 23
     Token,                          // 24
-    Name,
-    Number,
-    String,
-    Bracket
+    AST,                            // 25
+    Name,                           // 26
+    Number,                         // 27
+    String,                         // 28
+    Bracket                         // 29
 } type;
 
 #endif

@@ -6,6 +6,7 @@ token token_init(int ttype, void* value) {
   return t;
 }
 
+// Needs better implementation
 void token_destroy(token t) {
   destroy(t);
   free(t);
