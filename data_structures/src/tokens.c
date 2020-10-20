@@ -1,8 +1,13 @@
 #include "../include/tokens.h"
 
-token create_token(TokenTypeT type, typeT value) {
-  token new_token = (token)malloc(sizeof(struct Tokens));
-  new_token->type = type;
-  new_token->value = value;
-  return new_token;
+token token_init(int ttype, void* value) {
+  token t = (token)malloc(sizeof(struct Tokens));
+  t->value = T_init(ttype, value);
+  return t;
+}
+
+void token_destroy(token t) {
+  destroy(t);
+  free(t);
+  t = NULL;
 }

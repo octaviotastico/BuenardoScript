@@ -3,27 +3,17 @@
 
 #include "T.h"
 
-typedef union TokenType {
-  char* Name;
-  int Number;
-  char* String;
-  char Parenthesis;
-} TokenType;
-
-typedef enum TokenTypeT {
-  Name,
-  Number,
-  String,
-  Parenthesis
-} TokenTypeT;
-
-typedef struct Tokens* token;
-
 struct Tokens {
-  TokenTypeT type;
+	// Pointer to struct T containing the data of the Token //
   typeT value;
+
+	/* Destroy token */
+  void (*destroy)(token);
+
 };
 
-token create_token(TokenTypeT, typeT);
+token token_init(int ttype, void* value);
+
+void token_destroy(token t);
 
 #endif

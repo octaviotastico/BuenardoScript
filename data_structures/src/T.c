@@ -82,6 +82,21 @@ void T_set_value(typeT t, void* value) {
         case P_Void:
             t->value.p_v = (void*)value;
             break;
+        case Token:
+            t->value.t = *(token*)value;
+            break;
+        case Name:
+            t->value.name = (char*)value;
+            break;
+        case Number:
+            t->value.number = *(int*)value;
+            break;
+        case String:
+            t->value.string = (char*)value;
+            break;
+        case Bracket:
+            t->value.bracket = *(char*)value;
+            break;
         default:
             assert(0);
     };
@@ -144,6 +159,8 @@ int T_less_than(typeT a, typeT b) {
             return *(a->value.p_i) > *(b->value.p_i);
         case P_Char:
             return *(a->value.p_c) > *(b->value.p_c);
+        case Bracket:
+            return a->value.bracket == '[' && b->value.bracket == ']';
         default:
             return 0;
     };
@@ -191,6 +208,8 @@ int T_greater_than(typeT a, typeT b) {
             return *(a->value.p_i) > *(b->value.p_i);
         case P_Char:
             return *(a->value.p_c) > *(b->value.p_c);
+        case Bracket:
+            return a->value.bracket == ']' && b->value.bracket == '[';
         default:
             return 0;
     };
@@ -234,6 +253,8 @@ int T_equals(typeT a, typeT b) {
             return *(a->value.p_i) == *(b->value.p_i);
         case P_Char:
             return *(a->value.p_c) == *(b->value.p_c);
+        case Bracket:
+            return (a->value.bracket == '[' && b->value.bracket == '[') || (a->value.bracket == ']' && b->value.bracket == ']');
         default:
             return 0;
     };
@@ -250,6 +271,8 @@ void T_destroy(typeT t) {
         case Set:
             destroy(t->value.s);
             break;
+        case Token:
+            destroy(t->value.t);
     };
     free(t); t = NULL;
 }

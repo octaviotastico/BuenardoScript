@@ -4,10 +4,8 @@
 #include "data.h"
 
 struct T {
-
     // Type of value
     type iType;
-
     // Union of possible values //
     data value;
 

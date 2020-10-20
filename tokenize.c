@@ -1,5 +1,5 @@
 #include "data_structures/include/T.h"
-#include "./characters.h"
+#include "characters.h"
 
 vector tokenizer(char* input_text) {
   int input_text_length = string_size(input_text);
@@ -10,50 +10,45 @@ vector tokenizer(char* input_text) {
     if(isWhiteSpace(c)) continue;
 
     if(isName(c)) {
-      char* _name = ""; i++;
+      char* name = ""; i++;
       while(!isWhiteSpace(input_text[i])) {
-        _name += input_text[i]; i++;
+        name += input_text[i]; i++;
       }
-      typeT name = T_init(P_Char, _name);
-      token new_token = create_token(Name, name);
+      token new_token = token_init(Name, name);
       push_back(tokens, new_token);
       continue;
     }
 
     if(isOpenBracket(c)) {
-      typeT parenthesis = T_init(Char, &c);
-      token new_token = create_token(Parenthesis, parenthesis);
+      token new_token = token_init(Bracket, &c);
       push_back(tokens, new_token);
       continue;
     }
 
     if(isClosedBracket(c)) {
-      typeT parenthesis = T_init(Char, &c);
-      token new_token = create_token(Parenthesis, parenthesis);
+      token new_token = token_init(Bracket, &c);
       push_back(tokens, new_token);
       continue;
     }
 
     if(isNumber(c)) {
-      int _number = 0;
+      int number = 0;
       while(isNumber(c)) {
-        _number *= 10;
-        _number += (int)c;
+        number *= 10;
+        number += (int)c;
         c = input_text[++i];
       }
-      typeT number = T_init(Int, number);
-      token new_token = create_token(Number, number);
+      token new_token = token_init(Number, &number);
       push_back(tokens, new_token); i--;
       continue;
     }
 
     if(isString(c)) {
-      char* _str = ""; i++;
+      char* str = ""; i++;
       while(!isString(input_text[i]) && isCharacter(input_text[i])) {
-        _str += input_text[i]; i++;
+        str += input_text[i]; i++;
       }
-      typeT str = T_init(P_Char, _str);
-      token new_token = create_token(String, str);
+      token new_token = token_init(String, str);
       push_back(tokens, new_token);
       continue;
     }
@@ -69,9 +64,10 @@ int main() {
 
   vector v = tokenizer(test);
 
-  // abbb.name = "asdas";
-  // abbb.type = StringAtom;
-  // printf("%s\n",abbb.name);
-  // printf("%d\n",abbb.type);
+  char* test2 = "[div 256 2]";
+  printf("%s", test2);
+
+  vector v2 = tokenizer(test2);
+
   return 0;
 }
