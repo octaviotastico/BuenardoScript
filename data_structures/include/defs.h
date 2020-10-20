@@ -4,7 +4,7 @@
 #define copy(x)             x->copy(x)
 #define destroy(x)          x->destroy(x)
 #define equals(x, y)        x->equals(x, y)
-#define erase(x, y)         x->erase(x, T_init(x->type, &y))   
+#define erase(x, y)         x->erase(x, T_init(x->type, &y))
 #define find(x, y)          x->find(x, &y)
 #define fore(i, s, e)       for(int i = s; i < e; i++)
 #define get_first(x)        x->get_first(x)

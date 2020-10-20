@@ -2,7 +2,7 @@
 
 token token_init(int ttype, void* value) {
   token t = (token)malloc(sizeof(struct Tokens));
-  t->value = T_init(ttype, value);
+  t->token_value = T_init(ttype, value);
   return t;
 }
 

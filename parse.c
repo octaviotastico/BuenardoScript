@@ -36,20 +36,20 @@ Revisar param 1 y param 2, si son atomos, aplicar Name, sino, resolver primero p
 //   return arguments;
 // }
 
+// Here we receive a vector of tokens.
 ast parse(vector v) {
 
-  // v is a vector of tokens, so v[i] is a token
-  printf("%llu\n", v->size);
-  for(int i=0; i<4; i++) {
-    typeT tokenTypeT = at(v, i);
-    token tokenValue = tokenTypeT->value.t;
+  fore(i, 0, size(v)) {
+    token tokenTypeT = at(v, i)->value.t;
+    typeT lala = tokenTypeT->token_value;
+    // token tokenValue = tokenTypeT->value.t;
 
-    printf("%s\n", tokenValue->value);
+    // printf("%s\n", tokenTypeT->iType);
 
-    if(tokenTypeT->iType == Bracket) {
-      printf("--1--");
+    if(lala->iType == Bracket) {
+      printf("ImmaBracket\n");
     } else {
-      printf("--2--");
+      printf("NotBracket\n");
     }
   }
 

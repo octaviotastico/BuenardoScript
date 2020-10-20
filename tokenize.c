@@ -28,7 +28,7 @@ vector tokenizer(char* input_text) {
       int number = 0;
       while(isNumber(c)) {
         number *= 10;
-        number += (int)c;
+        number += c-'0';
         c = input_text[++i];
       }
       token new_token = token_init(Number, &number);

@@ -9,7 +9,7 @@ int isNumber(char c) {
 }
 
 int isCharacter(char c) {
-  return (isNumber(c) || (c > 64 && c < 91) || (c > 96 && c < 123) || (c > 127 && c < 166));
+  return ((c > 64 && c < 91) || (c > 96 && c < 123) || (c > 127 && c < 166));
 }
 
 int isName(char c) {

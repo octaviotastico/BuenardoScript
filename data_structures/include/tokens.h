@@ -5,7 +5,7 @@
 
 struct Tokens {
 	// Pointer to struct T containing the data of the Token //
-  typeT value;
+  typeT token_value;
 
 	/* Destroy token */
   void (*destroy)(token);
