@@ -1,19 +1,23 @@
 #include "tokenize.h"
 #include "parse.h"
+// #include "executer.h"
 
 int main() {
-  // char* test1 = "[sum 1 2]";
-  char* test1 = "[sum [sum 1 2] 2]";
+  char* test1 = "[sum 1 2]";
+
+  printf("Program: %s\n", test1);
+
+  printf("Starting Tokenizer\n");
   vector v1 = tokenizer(test1);
-  printf("Tokenized %s\n", test1);
+  printf("Finished Tokenizer\n");
 
-  // char* test2 = "[div 256 2]";
-  // vector v2 = tokenizer(test2);
-  // printf("Tokenized %s", test2);
-
+  printf("Starting Parser\n");
   ast a1 = parse(v1, 0);
+  printf("Finished Parser\n");
 
-  // ast a2 = parse(v2);
+  // printf("Starting Execution\n");
+  // exec e1 = execute(a1);
+  // printf("Finished Execution\n");
 
   return 0;
 }

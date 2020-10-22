@@ -23,79 +23,92 @@ Revisar param 1 y param 2, si son atomos, aplicar Name, sino, resolver primero p
 // Position is only used for recursion purposes.
 ast parse(vector v, int pos) {
 
+  printf("Starting building AST\n");
   ast abstract_syntax_tree;
   int ast_type = AST;
   char* ast_name = "";
   short ast_single_arg = 0;
+  token tokenTypeT = NULL;
+  typeT tokenValue = NULL;
   void* arg1 = NULL;
   void* arg2 = NULL;
 
-  token tokenTypeT = at(v, pos)->value.t;
-  typeT tokenValue = tokenTypeT->token_value;
+  do {
 
-  if (tokenValue->iType == Bracket) {
+    tokenTypeT = at(v, pos)->value.t;
+    tokenValue = tokenTypeT->token_value;
 
-    if(isOpenBracket(tokenValue->value.bracket)) {
-      printf("ImmaOpenBracket\n");
-      tokenTypeT = at(v, pos + 1)->value.t;
-      tokenValue = tokenTypeT->token_value;
-      pos++; // Move on to get the function name.
-    }
+    if (tokenValue->iType == Bracket) {
 
-    if(isClosedBracket(tokenValue->value.bracket)) {
-      printf("ImmaClosedBracketc\n");
-      return NULL;
-    }
-
-  }
-
-  if (tokenValue->iType == Name) {
-
-    ast_name = tokenValue->value.name;
-
-    // v[i] is a name, so v[i+1] is arg1, v[i+2] is arg2
-    // if v[i+1] or v[i+2] are a '[' (openingBracket), then
-    // its a recursive argument.
-    typeT arg1TokenValue = (at(v, pos + 1)->value.t)->token_value;
-    if (arg1TokenValue->iType == Bracket) {
-      arg1 = parse(v, pos + 1); pos++;
-      typeT _t = (at(v, pos)->value.t)->token_value;
-      while (_t->iType != Bracket && !isClosedBracket(_t->value.bracket)) {
-        // Until we find a closing bracket, so we dont
-        // count the same function (argument) twice... Not
-        // an elegant solution, but it works until I come up
-        // with something better.
-        pos++;
+      if(isOpenBracket(tokenValue->value.bracket)) {
+        printf("ImmaOpenBracket\n");
+        pos++; continue;
       }
-    } else {
-      arg1 = arg1TokenValue;
-    }
 
-    typeT arg2TokenValue = (at(v, pos + 2)->value.t)->token_value;
-    if (arg2TokenValue->iType == Bracket) {
-      arg2 = parse(v, pos + 2); pos++;
-      typeT _t = (at(v, pos)->value.t)->token_value;
-      while (_t->iType != Bracket && !isClosedBracket(_t->value.bracket)) {
-        // Until we find a closing bracket, so we dont
-        // count the same function (argument) twice... Not
-        // an elegant solution, but it works until I come up
-        // with something better.
-        pos++;
+      if(isClosedBracket(tokenValue->value.bracket)) {
+        printf("ImmaClosedBracketc\n");
+
+        abstract_syntax_tree = ast_init(ast_type, ast_name, ast_single_arg, arg1, arg2);
+        printf("Finished building AST\n");
+        return abstract_syntax_tree;
       }
-    } else {
-      arg2 = arg2TokenValue;
-    }
-    printf("ImmaFunction\n");
-  }
 
-  abstract_syntax_tree = ast_init(ast_type, ast_name, ast_single_arg, arg1, arg2);
-  printf("Finished building AST\n");
-  return abstract_syntax_tree;
+    }
+
+    if (tokenValue->iType == Name) {
+
+      printf("ImmaFunction\n");
+
+      ast_name = tokenValue->value.name;
+
+      // So... v[i] is a name, then, v[i+1] is arg1, v[i+2] is arg2.
+      // If v[i+1] or v[i+2] are a '[' (openingBracket), then they're
+      // recursive arguments.
+      printf("ImmaFirstArgument\n");
+      pos++; typeT arg1TokenValue = (at(v, pos)->value.t)->token_value;
+      if (arg1TokenValue->iType == Bracket) {
+        arg1 = parse(v, pos); pos++;
+        typeT _t = (at(v, pos)->value.t)->token_value;
+        while (_t->iType != Bracket && !isClosedBracket(_t->value.bracket)) {
+          // Until we find a closing bracket, so we dont
+          // count the same function (argument) twice... Not
+          // an elegant solution, but it works until I come up
+          // with something better.
+          // UPDATE: It won't work if the recursion is more than
+          //         1 level deep :) SO I NEED ANOTHER SOLUTION
+          pos++; _t = (at(v, pos)->value.t)->token_value;
+        }
+      } else {
+        arg1 = arg1TokenValue;
+      }
+
+      // This should be the second argument.
+      // NEED TOWORK ON SINGLE ARGUMENT FUNCTIONS.
+      printf("ImmaSecondArgument\n");
+      pos++; typeT arg2TokenValue = (at(v, pos)->value.t)->token_value;
+      if (arg2TokenValue->iType == Bracket) {
+        arg2 = parse(v, pos); pos++;
+        typeT _t = (at(v, pos)->value.t)->token_value;
+        while (_t->iType != Bracket && !isClosedBracket(_t->value.bracket)) {
+          // Until we find a closing bracket, so we dont
+          // count the same function (argument) twice... Not
+          // an elegant solution, but it works until I come up
+          // with something better.
+          // UPDATE: It won't work if the recursion is more than
+          //         1 level deep :) SO I NEED ANOTHER SOLUTION
+          pos++;
+        }
+      } else {
+        arg2 = arg2TokenValue;
+      }
+      pos++; continue;
+    }
+
+  } while (!(tokenValue->iType == Bracket && isClosedBracket(tokenValue->value.bracket)));
+
 }
 
-// int main() {
-//   return 0;
-// }
+///////////////////////
 
 // vector parse(vector tokens, int start) {
 
