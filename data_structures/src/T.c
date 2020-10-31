@@ -100,6 +100,8 @@ void T_set_value(typeT t, void* value) {
         case Bracket:
             t->value.bracket = *(char*)value;
             break;
+        case FunctionCall:
+            t->value.functionCall = (char*)value;
         default:
             assert(0);
     };

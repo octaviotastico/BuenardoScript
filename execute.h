@@ -2,9 +2,8 @@
 #define Parse_H
 
 #include "data_structures/include/T.h"
-#include "characters.h"
+#include "predef_functions.h"
 
-ast parse(vector v);
-ast parser(vector v, int* pos);
+typeT execute(ast programTree);
 
 #endif

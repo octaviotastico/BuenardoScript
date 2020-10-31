@@ -13,6 +13,7 @@ typedef struct T* typeT;
 typedef struct Vector* vector;
 typedef struct Tokens* token;
 typedef struct AbstractSyntaxTree* ast;
+// typedef struct AbstractSyntaxTreeNode* astNode;
 
 #include "assert.h"
 #include "defs.h"
@@ -62,6 +63,7 @@ typedef union Data {
     int number;                     // 27
     char* string;                   // 28
     char bracket;                   // 29
+    char* functionCall;             // 30
 } data;
 
 typedef enum types {
@@ -94,7 +96,8 @@ typedef enum types {
     Name,                           // 26
     Number,                         // 27
     String,                         // 28
-    Bracket                         // 29
+    Bracket,                        // 29
+    FunctionCall                    // 30
 } type;
 
 #endif
