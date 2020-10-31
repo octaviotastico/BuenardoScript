@@ -4,9 +4,10 @@
 #include "data_structures/include/T.h"
 #include "characters.h"
 
-int sum(typeT arg1, typeT arg2);
-int sub(typeT arg1, typeT arg2);
-int mul(typeT arg1, typeT arg2);
-int div(typeT arg1, typeT arg2);
+int buenardo_sum(vector args);
+int buenardo_sub(vector args);
+int buenardo_mul(vector args);
+int buenardo_div(vector args);
+int buenardo_pow(vector args);
 
 #endif

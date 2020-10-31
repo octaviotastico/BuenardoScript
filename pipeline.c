@@ -1,5 +1,6 @@
 #include "tokenize.h"
 #include "parse.h"
+#include "execute.h"
 #include "transform.h"
 
 int main() {
@@ -15,6 +16,10 @@ int main() {
   printf("Starting Parser\n");
   ast a1 = parse(v1);
   printf("Finished Parser\n");
+
+  printf("Starting Execution\n");
+  execute(a1);
+  printf("Finishing Execution\n");
 
   // printf("Starting Transformation\n");
   // transform(a1);

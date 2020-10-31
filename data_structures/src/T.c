@@ -102,6 +102,8 @@ void T_set_value(typeT t, void* value) {
             break;
         case FunctionCall:
             t->value.functionCall = (char*)value;
+        case TypeT:
+            t->value.ttt = *(typeT*)value;
         default:
             assert(0);
     };
