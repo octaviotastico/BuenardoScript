@@ -6,6 +6,6 @@
 
 typeT execute(ast programTree);
 
-typeT zip_ast(ast programTree);
+ast zip_ast(ast programTree);
 
 #endif

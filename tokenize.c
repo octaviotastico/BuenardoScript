@@ -15,10 +15,13 @@ vector tokenizer(char* input_text) {
     }
 
     if(isName(c)) {
-      short j = 0; char name[100];
+      short j = 0; char aux[100];
       while(!isWhiteSpace(input_text[i])) {
-        name[j] = input_text[i]; i++; j++;
+        aux[j] = input_text[i]; i++; j++;
       }
+      aux[j] = 0;
+      char* name = (char*)malloc(j);
+      strcpy(name, aux);
       token new_token = token_init(Name, name);
       push_back(tokens, new_token);
       continue;

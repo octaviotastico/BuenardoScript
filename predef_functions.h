@@ -4,10 +4,12 @@
 #include "data_structures/include/T.h"
 #include "characters.h"
 
-int buenardo_sum(vector args);
-int buenardo_sub(vector args);
-int buenardo_mul(vector args);
-int buenardo_div(vector args);
-int buenardo_pow(vector args);
+typeT buenardo_sum(vector args);
+typeT buenardo_sub(vector args);
+typeT buenardo_mul(vector args);
+typeT buenardo_div(vector args);
+typeT buenardo_pow(vector args);
+
+typeT execute_predef_function(char* name, vector args);
 
 #endif
