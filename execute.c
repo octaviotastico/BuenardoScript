@@ -21,6 +21,7 @@ ast zip_ast(ast programTree) {
       push_back(unzipped_args, arg_i);
     }
     // printf("%s\n", name);
-    execute_predef_function(name, unzipped_args);
+    ast res = execute_predef_function(name, unzipped_args);
+    return res;
   }
 }

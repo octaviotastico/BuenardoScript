@@ -13,7 +13,7 @@ ast buenardo_sum(vector args) {
     res += pos_i_tT->value.number;
   }
   printf("\nLlamada a la funcion Sum -> %d\n", res);
-  return ast_node_init(Number, &res);
+  return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast buenardo_sub(vector args) {
@@ -21,7 +21,7 @@ ast buenardo_sub(vector args) {
   for(int i = 1; i < size(args); i++) {
     res -= at(args, i)->value.a->value->value.number;
   }
-  return ast_node_init(Number, &res);
+  return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast buenardo_mul(vector args) {
@@ -29,7 +29,7 @@ ast buenardo_mul(vector args) {
   for(int i = 0; i < size(args); i++) {
     res *= at(args, i)->value.a->value->value.number;
   }
-  return ast_node_init(Number, &res);
+  return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast buenardo_div(vector args) {
@@ -37,7 +37,7 @@ ast buenardo_div(vector args) {
   for(int i = 1; i < size(args); i++) {
     res /= at(args, i)->value.a->value->value.number;
   }
-  return ast_node_init(Number, &res);
+  return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast buenardo_pow(vector args) {
@@ -48,7 +48,7 @@ ast buenardo_pow(vector args) {
       res *= res;
     }
   }
-  return ast_node_init(Number, &res);
+  return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast execute_predef_function(char* name, vector args) {
