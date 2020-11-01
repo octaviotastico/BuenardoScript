@@ -3,13 +3,14 @@
 
 #include "data_structures/include/T.h"
 #include "characters.h"
+#include <string.h>
 
-typeT buenardo_sum(vector args);
-typeT buenardo_sub(vector args);
-typeT buenardo_mul(vector args);
-typeT buenardo_div(vector args);
-typeT buenardo_pow(vector args);
+ast buenardo_sum(vector args);
+ast buenardo_sub(vector args);
+ast buenardo_mul(vector args);
+ast buenardo_div(vector args);
+ast buenardo_pow(vector args);
 
-typeT execute_predef_function(char* name, vector args);
+ast execute_predef_function(char* name, vector args);
 
 #endif

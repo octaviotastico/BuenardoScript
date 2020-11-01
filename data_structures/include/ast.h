@@ -3,11 +3,6 @@
 
 #include "T.h"
 
-// struct AbstractSyntaxTreeNode {
-//   int type;
-//   typeT value;
-// };
-
 struct AbstractSyntaxTree {
   int type;
   char* name;

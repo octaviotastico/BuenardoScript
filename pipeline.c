@@ -5,7 +5,7 @@
 
 int main() {
   // char* test1 = "[sum 1 2]";
-  char* test1 = "[sum 1 2 [sum 1 2] 4]";
+  char* test1 = "[sum 1 2 [sum 1 4] 7]";
 
   printf("Program: %s\n", test1);
 
