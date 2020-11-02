@@ -19,9 +19,5 @@ int pipeline(char* program) {
   execute(a1);
   // printf("Finishing Execution\n");
 
-  // printf("Starting Transformation\n");
-  // transform(a1);
-  // printf("Finishing Transformation\n");
-
   return 0;
 }

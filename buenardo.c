@@ -1,5 +1,5 @@
-#include "stdio.h"
 #include "pipeline.h"
+#include "stdio.h"
 
 int main() {
   printf(">>> BuenadoScript shell <<<\n");
@@ -7,7 +7,6 @@ int main() {
     char instruction[4096];
     printf(">>> ");
     fgets(instruction, 4096, stdin);
-    printf("\n");
     pipeline(instruction);
   }
 }

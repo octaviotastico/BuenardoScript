@@ -12,23 +12,29 @@ ast buenardo_sum(vector args) {
     typeT pos_i_tT = pos_i->value;
     res += pos_i_tT->value.number;
   }
-  printf("\nLlamada a la funcion Sum -> %d\n", res);
+  printf("Sum -> %d\n", res);
   return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast buenardo_sub(vector args) {
   int res = at(args, 0)->value.a->value->value.number;
   for(int i = 1; i < size(args); i++) {
-    res -= at(args, i)->value.a->value->value.number;
+    ast pos_i = at(args, i)->value.a;
+    typeT pos_i_tT = pos_i->value;
+    res -= pos_i_tT->value.number;
   }
+  printf("Sub -> %d\n", res);
   return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast buenardo_mul(vector args) {
   int res = 1;
   for(int i = 0; i < size(args); i++) {
-    res *= at(args, i)->value.a->value->value.number;
+    ast pos_i = at(args, i)->value.a;
+    typeT pos_i_tT = pos_i->value;
+    res *= pos_i_tT->value.number;
   }
+  printf("Mul -> %d\n", res);
   return ast_node_init(Number, T_init(Number, &res));
 }
 
@@ -37,6 +43,7 @@ ast buenardo_div(vector args) {
   for(int i = 1; i < size(args); i++) {
     res /= at(args, i)->value.a->value->value.number;
   }
+  printf("Div -> %d\n", res);
   return ast_node_init(Number, T_init(Number, &res));
 }
 
@@ -48,22 +55,14 @@ ast buenardo_pow(vector args) {
       res *= res;
     }
   }
+  printf("Pow -> %d\n", res);
   return ast_node_init(Number, T_init(Number, &res));
 }
 
 ast execute_predef_function(char* name, vector args) {
-  if(strcmp(name, "sum") == 0)
-    return buenardo_sum(args);
-  else if(strcmp(name, "sub") == 0)
-    return buenardo_sub(args);
-  else if(strcmp(name, "mul") == 0)
-    return buenardo_mul(args);
-  else if(strcmp(name, "div") == 0)
-    return buenardo_div(args);
-  else if(strcmp(name, "pow") == 0)
-    return buenardo_pow(args);
+  if(strcmp(name, "sum") == 0) return buenardo_sum(args);
+  if(strcmp(name, "sub") == 0) return buenardo_sub(args);
+  if(strcmp(name, "mul") == 0) return buenardo_mul(args);
+  if(strcmp(name, "div") == 0) return buenardo_div(args);
+  if(strcmp(name, "pow") == 0) return buenardo_pow(args);
 }
-
-// typeT buenardo_function_caller(vector args) {
-
-// }

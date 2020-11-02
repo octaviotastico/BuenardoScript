@@ -3,7 +3,7 @@
 vector tokenizer(char* input_text) {
 
   vector tokens = vector_init(Token, 1);
-  for(int i = 0; i < string_size(input_text); i++) {
+  for(int i = 0; i < strlen(input_text); i++) {
     char c = input_text[i];
 
     if(isWhiteSpace(c)) continue;
