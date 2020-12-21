@@ -127,4 +127,4 @@ That's made with just a while(True) loop, reading the user's input, and then cal
 - **execute.c**: The execution phase, traverses the AST and calls the predef_functions needed with the vector of parameters.
 - **predef_functions.c**: The implementation of the predefined functions mentioned in "About the language".
 - **buenardo.c**: The shell that executes BuenardoScript instructions one by one in real time.
-- **data_structures**: A superduper important directory (and epic project) that contains the implementation of several data structures, originally created with [CarusoX](https://github.com/CarusoX/Data-Structures-C).
+- **data_structures**: A superduper important directory (and epic project) that contains the implementation of several data structures, originally created by [CarusoX](https://github.com/CarusoX/Data-Structures-C) and me.
